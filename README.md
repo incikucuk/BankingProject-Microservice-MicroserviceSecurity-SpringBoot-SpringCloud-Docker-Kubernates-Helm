@@ -1,3 +1,4 @@
+![Screenshot 2024-10-15 at 11 34 42](https://github.com/user-attachments/assets/6c71f759-e25a-439e-b5fb-378959fbfe35)
 ![Screenshot 2024-10-10 at 16 00 14](https://github.com/user-attachments/assets/d2bfd43f-85e1-41bc-bee2-0fb48f7960ab)
 ## Banking System Project with Spring Boot and Microservice Technologies
 

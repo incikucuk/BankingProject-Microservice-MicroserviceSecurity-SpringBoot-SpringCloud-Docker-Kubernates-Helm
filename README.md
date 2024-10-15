@@ -1,3 +1,4 @@
+![Screenshot 2024-10-10 at 16 00 14](https://github.com/user-attachments/assets/d2bfd43f-85e1-41bc-bee2-0fb48f7960ab)
 ## Banking System Project with Spring Boot and Microservice Technologies
 
 #### The project was developed to simulate a banking website. Also the project has an account service has been created for user accounts, a card series for the bank's card types, and a loans service for the loan options they offer.

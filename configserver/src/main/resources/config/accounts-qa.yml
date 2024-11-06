@@ -1,0 +1,16 @@
+build:
+  version: "3.0"
+
+accounts:
+  message: "Welcome to Accounts Microservice related QA API's"
+  contactDetails:
+    name: "ikucuk_qa"
+    email: "ikucuk-qa@example.com"
+  onCallSupport:
+    -(555) 555-1244,
+    -(555) 555-4341
+
+
+
+
+

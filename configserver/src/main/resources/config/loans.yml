@@ -1,0 +1,12 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Loans Microservice"
+  contactDetails:
+    name: "ikucuk-loans"
+    email: "ikucuk-loans@example.com"
+  onCallSupport:
+    -(555) 555-1234,
+    -(555) 555-4321
+

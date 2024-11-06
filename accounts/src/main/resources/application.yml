@@ -1,6 +1,10 @@
 server:
   port: 8181
 spring:
+  application:
+    name: "accounts"
+  profiles:
+    active: "prod"    ##consol yada jvm de komut satiri ile ortam bilgisi degistirilerek otomatik profil degistirilir.
   datasource:
     url: jdbc:h2:mem:test
     driverClassName: org.h2.Driver
@@ -14,3 +18,5 @@ spring:
     hibernate:
       ddl-auto: create
     show-sql: true
+  config:
+    import: "optional:configserver:http://localhost:8071"  ##farklı bir ortamda calisabilmesi icin config server altında prod account config dosyasi calistirilmis olacak

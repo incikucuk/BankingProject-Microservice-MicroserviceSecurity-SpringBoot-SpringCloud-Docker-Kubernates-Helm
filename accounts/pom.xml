@@ -9,9 +9,10 @@
 		<relativePath/> <!-- lookup parent from repository -->
 	</parent>
 	<groupId>com.bankingSystem</groupId>
-	<artifactId>Accounts</artifactId>
+	<artifactId>accounts</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<name>Accounts</name>
+	<packaging>jar</packaging>
+	<name>accounts</name>
 	<description>Banking project for Spring Boot</description>
 	<url/>
 	<licenses>
@@ -28,6 +29,7 @@
 	</scm>
 	<properties>
 		<java.version>17</java.version>
+		<spring-cloud.version>2023.0.3</spring-cloud.version>
 	</properties>
 	<dependencies>
 		<dependency>
@@ -46,7 +48,6 @@
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-starter-web</artifactId>
 		</dependency>
-
 		<dependency>
 			<groupId>org.springframework.boot</groupId>
 			<artifactId>spring-boot-devtools</artifactId>
@@ -74,7 +75,25 @@
 			<artifactId>springdoc-openapi-starter-webmvc-ui</artifactId>
 			<version>2.6.0</version>
 		</dependency>
-	</dependencies>
+        <dependency>
+            <groupId>com.bankingSystem</groupId>
+            <artifactId>cards</artifactId>
+            <version>0.0.1-SNAPSHOT</version>
+            <scope>compile</scope>
+        </dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-starter-config</artifactId>
+			<version>4.1.3</version>
+		</dependency>
+		<dependency>
+			<groupId>org.springframework.cloud</groupId>
+			<artifactId>spring-cloud-dependencies</artifactId>
+			<version>2023.0.3</version>
+			<type>pom</type>
+			<scope>import</scope>
+		</dependency>
+    </dependencies>
 
 	<build>
 		<plugins>

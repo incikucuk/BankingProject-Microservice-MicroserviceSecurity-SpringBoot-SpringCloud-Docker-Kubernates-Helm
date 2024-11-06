@@ -1,0 +1,12 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Cards Microservice Prod API's"
+  contactDetails:
+    name: "ikucuk-card-prod"
+    email: "ikucuk-card-prod@example.com"
+  onCallSupport:
+    -(555) 555-1234,
+    -(555) 555-4321
+

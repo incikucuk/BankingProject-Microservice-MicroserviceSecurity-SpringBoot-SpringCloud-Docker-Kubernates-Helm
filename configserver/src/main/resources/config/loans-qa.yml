@@ -1,0 +1,16 @@
+build:
+  version: "1.0"
+
+accounts:
+  message: "Welcome to Loans Microservice related QA API's"
+  contactDetails:
+    name: "ikucuk_loans_qa"
+    email: "ikucuk--loans-qa@example.com"
+  onCallSupport:
+    -(555) 555-1244,
+    -(555) 555-4341
+
+
+
+
+

@@ -3,7 +3,7 @@ services:
     image: "ikucuk/accounts:s4"
     container_name: accounts-ms
     ports:
-      - "8181:8080"
+      - "8080:8080"
     deploy:
       resources:
         limits:
@@ -14,7 +14,7 @@ services:
     image: "ikucuk/cards:s4"
     container_name: cards-ms
     ports:
-      - "8081:8082"
+      - "8081:8081"
     deploy:
       resources:
         limits:
@@ -25,7 +25,7 @@ services:
     image: "ikucuk/loans:s4"
     container_name: loans-ms
     ports:
-      - "8090:8083"
+      - "8082:8082"
     deploy:
       resources:
         limits:

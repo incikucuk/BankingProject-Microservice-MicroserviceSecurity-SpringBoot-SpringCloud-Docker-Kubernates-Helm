@@ -1,6 +1,10 @@
 server:
   port: 8081
 spring:
+  application:
+    name: "cards"
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:test
     driverClassName: org.h2.Driver
@@ -14,3 +18,19 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  config:
+    import: "optional:configserver:http://localhost:8071" ##8071 ortak bağlantı portudur.artık hep bu porttan configler cagrılmıs olur ##farklı bir ortamda calisabilmesi icin config server altında prod account config dosyasi calistirilmis olacak
+    rabbitmq:    ##bu eklenti tüm mic. eklenmeli eklenmese de zaten pomxmldeki dependencylerdeki rabbitmq eklentisi otomatik olarak eklenecektir..
+      host: "localhost"
+      port: 5672
+      username: "guest"
+      password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #include: "refresh" tüm bilgileri yerine sadece degisen degeri gosterir.
+build:
+  version: "1.8"

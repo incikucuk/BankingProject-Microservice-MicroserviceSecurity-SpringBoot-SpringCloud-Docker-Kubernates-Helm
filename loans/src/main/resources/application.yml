@@ -1,7 +1,11 @@
 
 server:
-  port: 8090
+  port: 8082
 spring:
+  application:
+    name: "loans"
+  profiles:
+    active: "prod"
   datasource:
     url: jdbc:h2:mem:testdb
     driverClassName: org.h2.Driver
@@ -15,4 +19,21 @@ spring:
     hibernate:
       ddl-auto: update
     show-sql: true
+
+  config:
+    import: "optional:configserver:http://localhost:8071"
+    rabbitmq:
+      host: "localhost"
+      port: 5672
+      username: "guest"
+      password: "guest"
+
+management:
+  endpoints:
+    web:
+      exposure:
+        include: "*"  #include: "refresh" tüm bilgileri yerine sadece degisen degeri gosterir.
+
+build:
+  version: "1.5"
 

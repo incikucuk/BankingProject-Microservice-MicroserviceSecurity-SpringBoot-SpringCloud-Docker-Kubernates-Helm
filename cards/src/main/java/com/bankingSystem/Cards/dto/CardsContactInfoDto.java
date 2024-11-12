@@ -12,8 +12,6 @@ import java.util.Map;
 @ConfigurationProperties(prefix = "cards")
 @Getter
 @Setter
-@AllArgsConstructor
-@NoArgsConstructor
 public class CardsContactInfoDto {
 
     private String message;

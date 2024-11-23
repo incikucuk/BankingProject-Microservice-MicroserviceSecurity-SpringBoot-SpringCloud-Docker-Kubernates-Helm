@@ -1,0 +1,101 @@
+services:
+  rabbit:
+    image: rabbitmq:3.12-management
+    hostname: rabbitmq
+    ports:
+      - "5672:5672"
+      - "15672:15672"
+    healtcheck:
+      test: "rabbitmq-diagnostics check_port_connectivity"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start-period: 5s
+    networks:
+      - ikucuk-banking-network
+
+
+  configserver:
+    image: "ikucuk/configserver:s6"
+    container_name: configserver-ms
+    ports:
+      - "8071:8071"
+    depends_on:
+      - rabbit:
+        condition: service_healthy
+      -
+    healtcheck:
+      test: "curl --fail --silent localhost:8071/actuator/health/readiness | grep UP || exit 1"
+      interval: 10s
+      timeout: 5s
+      retries: 10
+      start-period: 10s
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - ikucuk-banking-network
+
+
+  accounts:
+    image: "ikucuk/accounts:s6"
+    container_name: accounts-ms
+    ports:
+      - "8080:8080"
+    depends_on:
+      - configserver:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - ikucuk-banking-network
+    environment:
+      SPRING_APPLICATION_NAME: "accounts"  ##uygulama adi da belirtilemelidir.
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/" ##onunde optional:.. ifadesi varsa kaldırılmalı çünkü başarısız olursa bunu gormeliyiz.optional her durumda çalıstırabiliyordu.
+      SPRING_PROFILES_ACTIVE: default
+
+
+  cards:
+    image: "ikucuk/cards:s6"
+    container_name: cards-ms
+    ports:
+      - "8081:8081"
+    depends_on:
+      - configserver:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - ikucuk-banking-network
+    environment:
+      SPRING_APPLICATION_NAME: "cards"  ##uygulama adi da belirtilemelidir.
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/" ##onunde optional:.. ifadesi varsa kaldırılmalı çünkü başarısız olursa bunu gormeliyiz.optional her durumda çalıstırabiliyordu.
+      SPRING_PROFILES_ACTIVE: default
+
+
+  loans:
+    image: "ikucuk/loans:s6"
+    container_name: loans-ms
+    ports:
+      - "8082:8082"
+    depends_on:
+      - configserver:
+        condition: service_healthy
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    networks:
+      - ikucuk-banking-network
+    environment:
+      SPRING_APPLICATION_NAME: "loans"  ##uygulama adi da belirtilemelidir.
+      SPRING_CONFIG_IMPORT: "configserver:http://configserver:8071/" ##onunde optional:.. ifadesi varsa kaldırılmalı çünkü başarısız olursa bunu gormeliyiz.optional her durumda çalıstırabiliyordu.
+      SPRING_PROFILES_ACTIVE: default
+networks :
+  ikucuk-banking-network:
+    driver: "bridge"

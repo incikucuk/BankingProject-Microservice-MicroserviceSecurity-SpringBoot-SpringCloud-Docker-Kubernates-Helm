@@ -27,6 +27,15 @@ management:
     web:
       exposure:
         include: "*"  #include: "refresh" tüm bilgileri yerine sadece degisen degeri gosterir.
+  health:    ##liveness-readiness healh information gosterir
+    readiness-state:
+      enabled: true
+      liveness-state:
+        enabled: true
+    endpoint:
+      health:
+        probes:
+          enabled: true
 
 encrypt:
   key: "0okQaCNlDWCGjvOBK2qkrg=="

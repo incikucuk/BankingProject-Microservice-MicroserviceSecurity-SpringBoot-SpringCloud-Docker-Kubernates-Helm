@@ -1,0 +1,25 @@
+services:
+  network-deploy-service:   ##network ile ilgili yapılandırmalardan bahsedilecek
+    networks:
+      - ikucuk-banking-network
+      -
+  microservice-base-config:   ##docker-compose da olusturulacak microservislerin ortak yapılandırmaları
+    extends:
+      service: network-deploy-service
+    deploy:
+      resources:
+        limits:
+          memory: 700m
+    environment:
+      - SPRING_PROFILES_ACTIVE: default
+
+  microservice-configserver-config:
+    extends:
+      service: microservice-base-config
+    depends_on:
+      configserver:
+        condition: service_healthy
+    environment:
+      SPRING_PROFILES_ACTIVE: default
+      SPRING_CONFIG_IMPORT: configserver:http://configserver:8071
+

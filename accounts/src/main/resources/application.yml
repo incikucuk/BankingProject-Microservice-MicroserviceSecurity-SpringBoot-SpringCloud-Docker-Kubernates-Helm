@@ -20,11 +20,12 @@ spring:
     show-sql: true
   config:
     import: "optional:configserver:http://localhost:8071"  ##farklı bir ortamda calisabilmesi icin config server altında prod account config dosyasi calistirilmis olacak
-    rabbitmq:    ##bu eklenti tüm mic. eklenmeli eklenmese de zaten pomxmldeki dependencylerdeki rabbitmq eklentisi otomatik olarak eklenecektir..
-      host: "localhost"
-      port: 5672
-      username: "guest"
-      password: "guest"
+
+  rabbitmq:    ##bu eklenti tüm mic. eklenmeli eklenmese de zaten pomxmldeki dependencylerdeki rabbitmq eklentisi otomatik olarak eklenecektir..
+    host: "localhost"
+    port: 5672
+    username: "guest"
+    password: "guest"
 
 build:
   version: "2.2"
